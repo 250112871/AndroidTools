@@ -32,6 +32,9 @@ public class ViewUtils {
         return arr;
     }
 
+    /*
+     * 为两个控件相互设置左右焦点
+     */
     public static void setLeftRightFause(View leftView, View rightView) {
         leftView.setNextFocusRightId(rightView.getId());
         rightView.setNextFocusLeftId(leftView.getId());

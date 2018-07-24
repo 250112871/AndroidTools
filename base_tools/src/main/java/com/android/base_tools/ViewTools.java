@@ -17,7 +17,7 @@ import android.widget.ScrollView;
 public class ViewTools {
 
     /**
-     * 1. 让View在HorizontalScrollView 中居中显示
+     * 1. 让View在HorizontalScrollView 中居中显示,前scrollview android:layout_width="match_parent"
      */
     public static void moveHorizontal(final HorizontalScrollView scrollView, final View view) {
         if (scrollView != null) {
@@ -25,6 +25,9 @@ public class ViewTools {
         }
     }
 
+    /**
+     * 2. ScrollView 中居中显示,前scrollview android:layout_height="match_parent"
+     */
     public static void moveVertical(ScrollView scrollView, View view) {
         if (scrollView != null) {
             scrollView.smoothScrollBy(0, getVerticalScrollSize(scrollView, view));
@@ -32,7 +35,7 @@ public class ViewTools {
     }
 
     /**
-     * 2计算如果view 居中显示需要移动的距离
+     * 计算如果view 居中显示需要移动的距离
      */
     private static int getHorizontalScrollSize(final HorizontalScrollView scrollView, final View view) {
         int result = 0;
@@ -167,6 +170,7 @@ public class ViewTools {
         int bottom = top + view.getMeasuredHeight();
         return view.isClickable() && y >= top && y <= bottom && x >= left && x <= right;
     }
+
     private static boolean isClickInView(View view, int x, int y) {
         int[] arr = getLocationInWindow(view);
         int left = arr[0];

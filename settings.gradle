@@ -1,1 +1,1 @@
-include ':app', ':weight', ':base_tools'
+include ':app', ':weight', ':base_tools', ':iodemo', ':base'

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="true"
+    android:background="@color/custom_dialog_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dime_px2dip_64"
+        android:layout_marginRight="@dimen/dime_px2dip_64"
+        android:background="@drawable/custom_dialog_background">
+
+
+        <TextView
+            android:id="@+id/tv_content_msg"
+            android:layout_marginLeft="@dimen/dime_px2dip_40"
+            android:layout_marginRight="@dimen/dime_px2dip_40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/dime_px2dip_26"
+            android:minHeight="@dimen/dime_px2dip_30"
+            android:minWidth="@dimen/dime_px2dip_30"
+            android:textColor="#000000"
+            android:paddingBottom="@dimen/dime_px2dip_14"
+            android:paddingTop="@dimen/dime_px2dip_40"
+            android:textSize="@dimen/dime_px2sp_30" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dime_px2dip_1"
+            android:layout_below="@id/tv_content_msg"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:id="@+id/ll_two_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dime_px2dip_80"
+            android:layout_below="@id/line"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:gravity="center"
+                android:text="否"
+                android:textColor="#333333"
+                android:textSize="@dimen/dime_px2sp_30" />
+
+            <View
+                android:layout_width="@dimen/dime_px2dip_1"
+                android:layout_height="match_parent"
+                android:background="@color/line" />
+
+            <Button
+                android:id="@+id/bt_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:gravity="center"
+                android:text="是"
+                android:textColor="#22abe1"
+                android:textSize="@dimen/dime_px2sp_30" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_one_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dime_px2dip_80"
+            android:layout_below="@id/line"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/bt_single"
+                android:layout_marginLeft="@dimen/dime_px2dip_10"
+                android:layout_marginRight="@dimen/dime_px2dip_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dime_px2dip_20"
+                android:paddingRight="@dimen/dime_px2dip_20"
+                android:text="知道了"
+                android:textColor="#22abe1"
+                android:textSize="@dimen/dime_px2sp_28" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
