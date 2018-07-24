@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lb.base.demo.com.activity.RxAndroidActivity">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="subscribe()" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_02"
+        android:layout_width="86dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="map()"
+        app:layout_constraintTop_toBottomOf="@id/bt_text_01" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="flatMap()"
+        app:layout_constraintTop_toBottomOf="@id/bt_text_02" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="zip() "
+        app:layout_constraintTop_toBottomOf="@id/bt_text_03" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="interval() "
+        app:layout_constraintTop_toBottomOf="@id/bt_text_04" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_test_content"
+        android:layout_width="@dimen/dime_px2dip_260"
+        android:layout_height="wrap_content"
+        android:hint="显示结果"
+        android:lineSpacingExtra="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:textColor="#999999"
+        app:layout_constraintLeft_toRightOf="@id/bt_text_01" />
+</android.support.constraint.ConstraintLayout>

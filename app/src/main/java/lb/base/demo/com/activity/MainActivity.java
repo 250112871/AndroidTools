@@ -1,5 +1,6 @@
 package lb.base.demo.com.activity;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -8,9 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.android.base_tools.Lg;
-
 import java.util.List;
 
 import butterknife.BindView;
@@ -77,11 +75,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         adapter.setOnclickServiceItem(new TestRecyclerAdapter.OnclickServiceItem() {
             @Override
             public void onClick(TestBean testBean, int i) {
-                if (i % 2 == 0) {
-                    toast.showMsg("点击了：" + i);
-                } else {
-                    dialog.showMsg("击了：" + i);
-                    Lg.ii("击了："+i);
+                if (i == 0) {
+                    startActivity(new Intent(MainActivity.this, RxAndroidActivity.class));
                 }
             }
         });

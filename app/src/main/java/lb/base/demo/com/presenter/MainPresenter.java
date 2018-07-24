@@ -16,7 +16,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void getTestList() {
         List<TestBean> list = new ArrayList<>();
-        list.add(new TestBean("a"));
+        list.add(new TestBean("RxAndroid Demo"));
         list.add(new TestBean("b"));
         list.add(new TestBean("c"));
         list.add(new TestBean("d"));

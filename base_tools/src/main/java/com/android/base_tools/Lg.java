@@ -13,6 +13,10 @@ public class Lg {
     public static boolean isDebug = true;
     private static String tag = "lf-->";
 
+    public static void setTag(String tag) {
+        Lg.tag = tag;
+    }
+
     public static void i(String tag, String msg) {
         if (isDebug) {
             Log.i(tag, msg);

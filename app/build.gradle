@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "lb.android.base.demo.com"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -27,8 +27,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //状态栏工具
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
-
+    //查找控件
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation project(':base_tools')
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 }

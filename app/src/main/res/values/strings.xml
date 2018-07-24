@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroidBase</string>
+    <string name="flatMap">它可以把一个发射器Observable 通过某种方法转换为多个Observables，然后再把这些分散的Observables装进一个单一的发射器Observable</string>
+    <string name="zip">zip 组合事件的过程就是分别从发射器A和发射器B各取出一个事件来组合，并且一个事件只能被使用一次，组合的顺序是严格按照事件发送的顺序来进行的,以最少个数的发射器为最终数量</string>
+    <string name="interval">interval操作符是每隔一段时间就产生一个数字，这些数字从0开始，一次递增1直至无穷大</string>
+    <string name="subscribe">基本用法</string>
+    <string name="map">对发射时间发送的每一个事件应用一个函数，是的每一个事件都按照指定的函数去变化</string>
 </resources>
