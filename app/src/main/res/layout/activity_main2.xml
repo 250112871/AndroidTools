@@ -49,6 +49,52 @@
         android:text="interval() "
         app:layout_constraintTop_toBottomOf="@id/bt_text_04" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="repeat() "
+        app:layout_constraintTop_toBottomOf="@id/bt_text_05" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="rang() "
+        app:layout_constraintTop_toBottomOf="@id/bt_text_06" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_08"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="toList() "
+        app:layout_constraintTop_toBottomOf="@id/bt_text_07" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_09"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="delay() "
+        app:layout_constraintTop_toBottomOf="@id/bt_text_08" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_text_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dime_px2dip_10"
+        android:padding="@dimen/dime_px2dip_10"
+        android:text="backPressure() "
+        app:layout_constraintLeft_toRightOf="@id/bt_text_09"
+        app:layout_constraintTop_toBottomOf="@id/bt_text_08" />
+
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_test_content"
         android:layout_width="@dimen/dime_px2dip_260"

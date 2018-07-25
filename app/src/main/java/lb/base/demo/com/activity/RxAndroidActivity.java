@@ -7,12 +7,15 @@ import android.widget.TextView;
 import com.android.base_tools.Lg;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -84,6 +87,7 @@ public class RxAndroidActivity extends AppCompatActivity {
         tvContent.setText(R.string.map);
         if (test2Subscribe != null) {
             test2Subscribe.dispose();
+            test2Subscribe = null;
         } else {
             test2Subscribe = Observable.fromArray(new TestBean("张三"), new TestBean("李四"), new TestBean("王二麻子"))
                     .map(new Function<TestBean, String>() {
@@ -111,6 +115,7 @@ public class RxAndroidActivity extends AppCompatActivity {
         tvContent.setText(R.string.flatMap);
         if (test3Subscribe != null) {
             test3Subscribe.dispose();
+            test3Subscribe = null;
         } else {
             test3Subscribe = Observable.create(new ObservableOnSubscribe<String>() {
                 @Override
@@ -147,7 +152,8 @@ public class RxAndroidActivity extends AppCompatActivity {
     void test4() {
         tvContent.setText(R.string.zip);
         if (test4Subscribe != null) {
-            test3Subscribe.dispose();
+            test4Subscribe.dispose();
+            test4Subscribe = null;
         } else {
 
             Observable<String> stringObservable = Observable.create(new ObservableOnSubscribe<String>() {
@@ -171,6 +177,7 @@ public class RxAndroidActivity extends AppCompatActivity {
             final Map<String, Integer> map = new HashMap<>(10);
             if (test4Subscribe != null) {
                 test4Subscribe.dispose();
+                test4Subscribe = null;
             } else {
                 test4Subscribe = Observable.zip(stringObservable, intObservable, new BiFunction<String, Integer, String>() {
                     @Override
@@ -189,20 +196,132 @@ public class RxAndroidActivity extends AppCompatActivity {
         }
     }
 
-    private Disposable subscribe;
+    private Disposable test5Subscribe;
+
+    private Long time = 5L;
 
     @OnClick(R.id.bt_text_05)
     void test5() {
         tvContent.setText(R.string.interval);
-        if (subscribe != null) {
-            subscribe.dispose();
+        if (test5Subscribe != null) {
+            test5Subscribe.dispose();
+            test5Subscribe = null;
         } else {
-            subscribe = Observable.interval(2, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+            test5Subscribe = Observable.interval(1, TimeUnit.SECONDS).map(new Function<Long, Long>() {
                 @Override
-                public void accept(Long value) {
-                    Lg.i("aLong:" + value);
+                public Long apply(Long aLong) {
+                    Lg.i("apply:" + aLong);
+                    return time - aLong;
+                }
+            }).take(time + 1).subscribe(new Consumer<Long>() {
+                @Override
+                public void accept(Long aLong) {
+                    Lg.i("倒计时：" + aLong);
                 }
             });
         }
+    }
+
+    Disposable test6Subscribe;
+
+    @OnClick(R.id.bt_text_06)
+    void test6() {
+        tvContent.setText(R.string.repeat);
+        if (test6Subscribe != null) {
+            test6Subscribe.dispose();
+            test6Subscribe = null;
+        } else {
+            test6Subscribe = Observable.fromArray("aa", "bb", "cc").repeat(4).subscribe(new Consumer<String>() {
+                @Override
+                public void accept(String s) {
+                    Lg.i("s:" + s);
+                }
+            });
+        }
+    }
+
+    Disposable test7Subscribe;
+
+    @OnClick(R.id.bt_text_07)
+    void test7() {
+        tvContent.setText(R.string.range);
+        if (test7Subscribe != null) {
+            test7Subscribe.dispose();
+            test7Subscribe = null;
+        } else {
+            test7Subscribe = Observable.range(2, 5).subscribe(new Consumer<Integer>() {
+                @Override
+                public void accept(Integer integer) {
+                    Lg.i("accept:" + integer);
+                }
+            });
+        }
+    }
+
+    @OnClick(R.id.bt_text_08)
+    void test8() {
+        tvContent.setText("数组转集合");
+        Disposable subscribe = Observable.just(1, 2, 3, 4, 5).toList().subscribe(new Consumer<List<Integer>>() {
+            @Override
+            public void accept(List<Integer> integers) {
+                Lg.i("integers:" + integers);
+            }
+        });
+        subscribe.isDisposed();
+    }
+
+    @OnClick(R.id.bt_text_09)
+    void test9() {
+        tvContent.setText("延迟发送数据");
+        Disposable subscribe = Observable.just(1, 2, 3).delay(10, TimeUnit.SECONDS).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) {
+                Lg.i("integer:" + integer);
+            }
+        });
+        Lg.i("disposed:" + subscribe.isDisposed());
+    }
+
+    @OnClick(R.id.bt_text_10)
+    void text10() {
+        Random random = new Random();
+        int type = random.nextInt(2);
+        tvContent.setText("背压处理");
+        Lg.i("type:" + type);
+        if (type == 1) {
+            test10Demo1();
+        } else {
+            test10Demo2();
+        }
+    }
+
+    void test10Demo2() {
+        Disposable text10Demo2Subscribe = Flowable.interval(1, TimeUnit.MILLISECONDS)
+                .onBackpressureBuffer()     //只处理128K以内的命令，多于的舍弃
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Thread.sleep(1000);
+                        Lg.i("aLong:" + aLong);
+                    }
+                });
+        Lg.i("text10Demo2Subscribe:" + text10Demo2Subscribe.isDisposed());
+    }
+
+    void test10Demo1() {
+        //        处理不过来的指令会放到内存中，指令越多，内在占用越大
+        Disposable text10Demo1Subscribe = Observable.interval(1, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Thread.sleep(1000);
+                        Lg.i("aLong:" + aLong + "  -->" + Thread.currentThread().getName());
+                    }
+                });
+        Lg.i("text10Demo1Subscribe:" + text10Demo1Subscribe.isDisposed());
     }
 }
